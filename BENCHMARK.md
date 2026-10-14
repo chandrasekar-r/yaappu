@@ -33,3 +33,23 @@
 - cluster ந்த் (1): அற்றந்த்ரூஉம்
 - cluster வ்ரு (1): யானை஦வ்ருஉம்
 - cluster ம்த் (1): ஆக்கம்த்ருஉம்
+
+## Errata + rule-licensed re-segmentation (scripts/bench_reseg.py)
+
+Reproduce: `python3 scripts/bench_reseg.py` (about 5 s). Atom's baseline shuffle control: `python3 scripts/bench.py | grep Shuffle` gives 14/1305. That needs Atom's uncommitted bench.py edit; `bench_reseg.py` repeats the same procedure (seed 0, raw 7-word kurals) and gets the same 14/1305.
+
+- `errata=typo`: ெ+ள→ௌ normalisation plus 13 typo fixes verified against Tamil Wikisource *திருக்குறள், மூலம்*, with Project Madurai readings recorded. `errata=all` also applies 5 editorial re-segmentations from the same source. Both live in `data/errata.json`; the raw data is never modified (`yaappu.errata.load_kurals`).
+- L1 = kutriyalikaram license (yaappu/reseg.py, the default). L2 = aikaarakkurukkam (opt-in; not adopted, because it adds a false accept and recovers nothing on errata text).
+
+| checker | raw | errata=typo | errata=all | shuffle false-accept |
+|---|---|---|---|---|
+| baseline | 1284/1330 = 96.54% | 1301/1330 = 97.82% | 1306/1330 = 98.20% | 14/1305 = 1.07% |
+| L1 | 1294/1330 = 97.29% | 1311/1330 = 98.57% | 1316/1330 = 98.95% | 14/1305 = 1.07% |
+| L1+L2 | 1295/1330 = 97.37% | 1311/1330 = 98.57% | 1316/1330 = 98.95% | 15/1305 = 1.15% |
+
+Remaining failures (default L1, errata=all):
+- **thalai** (12): 4: வேண்டாமை->இலானடி need ner; 114: காணப்ப->படும். need ner; 170: இல்லை->அஃத்இல்லார் need nirai; 278: மாண்டார்->நீராடி need nirai; 719: சொல்லு->வார். need nirai; 738: நாட்டிவ்->வைந்து. need nirai; 764: அழிவின்றி->அறைபோகா need ner; 778: செறினும்->சீர்குன்றல் need nirai; 858: அதனை->மிக்லூக்கின் need nirai; 882: வாள்போல->பகைவரை need ner; 1134: உய்க்கும்->நாணொடு need nirai; 1249: லவரால்->உள்ளிநீ need nirai
+- **unscannable** (1): 434: leading consonant
+- **seer_length** (1): 832: seer1 பேதைமையுள் 4 asai
+
+Recovered by licenses (10): 178 (licensed: L1@w2); 254 (licensed: L1@w1); 291 (licensed: L1@w2); 324 (licensed: L1@w2); 585 (licensed: L1@w3); 801 (licensed: L1@w2); 844 (licensed: L1@w2); 895 (licensed: L1@w1); 1041 (licensed: L1@w2); 1299 (licensed: L1@w1)
