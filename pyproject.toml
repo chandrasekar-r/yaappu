@@ -1,0 +1,5 @@
+[project]
+name = "yaappu"
+version = "0.1.0"
+description = "Classical Tamil prosody (Kural Venba) and Mozhimarapu phonotactics"
+requires-python = ">=3.9"
