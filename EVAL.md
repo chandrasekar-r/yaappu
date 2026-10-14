@@ -55,3 +55,36 @@ python scripts/eval_words_metrics.py > results/words_metrics.md
 - `yaappu/prefix.py` and `yaappu/decode.py` implement character-level prefix constraints. Their outputs (`results/gen_*.jsonl`) scan but contain mostly non-words and empty lines.
 - I reused the chapter topics and prompt from `scripts/eval_generate.py`. The decoder was replaced with the word-level one.
 - Atom's job (`eval_generate.py` on Qwen-1.5B) was still running at 04:52 and was stopped to free the CPU. Its partial output is kept.
+
+## Part A: meaning improvements (no-repeat, frequency penalty, monai/edhugai bonus, N-best rerank)
+
+Run: `python scripts/eval_rerank.py 20 8`, then `python scripts/eval_ppl_words.py`. Output: `results/rerank_gemma-2-2b-it.jsonl` (all 160 candidates, with scores) and `results/ppl_words.md`.
+
+- **No-repeat (hard):** a word can't be completed twice within one couplet.
+- **Frequency penalty:** 1.5 logits per earlier use, counting the words of previously chosen couplets and of the current topic's other candidates. It is applied to the token that *completes* the word.
+- **Rerank:** 8 candidates per topic, ranked by gemma's own mean token log-prob of the couplet given the prompt "Write one meaningful, grammatical classical Tamil couplet about <topic>", plus 0.15 per monai/edhugai match.
+- **Monai/edhugai bonus:** a soft bonus at rerank time; the decoder itself doesn't use it.
+
+| | before (constrained, seed 0, n=20) | after (reranked winners, n=20) |
+|---|---|---|
+| meter pass (check_kural) | 20/20 | 20/20 (all 160 candidates pass too) |
+| distinct words / total | 118/140 | 117/140 |
+| repeated words within a couplet | 3 | 0 |
+| couplets containing ஓர்ந்துகண் | 5/20 | 5/20 (the frequency penalty did not reduce this; see below) |
+| monai+edhugai matches | — | 11 across the 20 winners (mean 0.23 per candidate) |
+| time | ~5 s per couplet | ~60 s per topic (8 × ~7 s generation + scoring) |
+
+**Meaningfulness proxy (clearly a weak one).** This is the perplexity of the plain couplet text under an independent model, Qwen2.5-3B-Instruct, which was not used for generation or reranking:
+
+| set | n | meter pass | PPL median | PPL mean |
+|---|---|---|---|---|
+| baseline (gemma, n=60) | 60 | 0/60 | 13 | 17 |
+| constrained before (gemma, n=60) | 60 | 60/60 | 12 | 12 |
+| constrained after: all candidates | 160 | 160/160 | 13 | 14 |
+| constrained after: reranked winners | 20 | 20/20 | 11 | 11 |
+| real Thirukkural (random 60) | 60 | 58/60 | 13 | 14 |
+
+**Reading the result.**
+- **Perplexity can't tell real Thirukkural from word salad here** (13 vs 12). Under this measure the reranked winners score slightly "better" than real kurals, which shows that perplexity rewards common words, not sense.
+- **No honest automatic meaningfulness gain is shown.** A human or strong-judge evaluation is still needed.
+- **Why the frequency penalty failed:** it only acts on the token that completes a word. ஓர்ந்துகண் shares its token prefix with words the penalty doesn't touch, so the model still reaches it. A penalty at word *entry* (subtree-aware) is the next fix.

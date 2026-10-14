@@ -149,7 +149,11 @@ class KuralWordLogitsProcessor(LogitsProcessor):
 
 
 @torch.no_grad()
-def generate(model, T, prompt_ids, temperature=0.8, top_k=40, seed=0, max_steps=200, max_backtracks=100):
+def generate(model, T, prompt_ids, temperature=0.8, top_k=40, seed=0, max_steps=200, max_backtracks=100,
+             no_repeat=False, word_penalty=None):
+    """no_repeat: a word may not be completed twice in one couplet (hard).
+    word_penalty: dict word -> logit penalty subtracted from every token that *completes*
+    that word (the next-word/newline/EOS token), e.g. a frequency penalty for overused words."""
     import copy
     from .venba import check_kural
     g = torch.Generator().manual_seed(seed); t0 = time.time()
@@ -171,7 +175,17 @@ def generate(model, T, prompt_ids, temperature=0.8, top_k=40, seed=0, max_steps=
                 return None, {"time": time.time() - t0, "tokens": len(gen), "backtracks": bt, "status": "dead_end"}
             bt += 1; banned.pop(len(gen), None); banned[len(gen) - 1].add(gen.pop()); stack.pop(); cache.crop(-1)
             continue
+        if no_repeat:
+            ids = [i for i in ids if not any(a[0] in ("next", "sep", "eos") and a[1] in cur.words for a in acts[i])]
+            if not ids:
+                if not gen or bt >= max_backtracks:
+                    return None, {"time": time.time() - t0, "tokens": len(gen), "backtracks": bt, "status": "dead_end"}
+                bt += 1; banned.pop(len(gen), None); banned[len(gen) - 1].add(gen.pop()); stack.pop(); cache.crop(-1)
+                continue
         lg = logits[torch.tensor(ids)].float()
+        if word_penalty:
+            pen = [max((word_penalty.get(a[1], 0.0) for a in acts[i] if a[0] in ("next", "sep", "eos")), default=0.0) for i in ids]
+            lg = lg - torch.tensor(pen)
         if len(ids) > top_k:
             keep = torch.topk(lg, top_k).indices; ids = [ids[i] for i in keep.tolist()]; lg = lg[keep]
         pr = torch.softmax(lg / temperature, -1)

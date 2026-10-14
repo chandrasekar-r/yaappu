@@ -1,0 +1,6 @@
+name = "yaappu"
+main = "src/worker.ts"
+compatibility_date = "2026-10-01"
+account_id = "ece27b2b79e9547b199388b440c7cdc0"
+workers_dev = false
+routes = [{ pattern = "yaappu.rclabs.in", custom_domain = true }]
