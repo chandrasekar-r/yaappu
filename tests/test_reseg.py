@@ -38,3 +38,15 @@ def test_kutriyalikaram_license():
 
 def test_license_does_not_rescue_shuffles():
     assert not check_kural_licensed("உலகு அகர முதல ஆதி பகவன் எழுத்தெல்லாம் முதற்றே").ok
+
+
+def test_parimelazhagar_errata_levels():
+    from yaappu.reseg import check_kural_licensed
+    typo, allk = load_kurals("typo"), load_kurals("all")
+    for n in (114, 434, 719, 858, 882):              # word-level typos, verified in the Parimelazhagar edition
+        assert check_kural_licensed(text(typo, n)).ok, n
+    for n in (4, 170, 278, 738, 764, 1134, 1249):   # variants / edition seer division: 'all' only
+        assert text(typo, n) == text(load_kurals("none"), n) or n in ()
+        assert check_kural_licensed(text(allk, n)).ok, n
+    fails = [k["Number"] for k in allk if not check_kural_licensed(k["Line1"] + "\n" + k["Line2"]).ok]
+    assert fails == [778, 832], fails

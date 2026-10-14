@@ -6,6 +6,7 @@ from yaappu.errata import load_kurals, normalize
 texts = []
 for m in ("none", "typo", "all"):
     texts += [k["Line1"] + "\n" + k["Line2"] for k in load_kurals(m)]
+P = json.load(open("../data/sources/parimelazhagar_wikisource.json")); texts += [v["poem"] for v in P.values()]
 random.seed(1)
 for t in texts[:1330]:
     w = t.split(); random.shuffle(w); texts.append(" ".join(w))

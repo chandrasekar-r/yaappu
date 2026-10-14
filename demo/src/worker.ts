@@ -60,7 +60,7 @@ function shell(page: string, title: string, body: string) {
 const pages: Record<string, () => Response> = {
   "/": () => shell("/", "Kural checker", `<section class="hero"><h1>Check the meter of any <span class="ta">குறள் வெண்பா</span></h1>
 <p class="lead">yaappu splits a couplet into asai and seer, then checks every venthalai link, the way a Tamil prosodist would.</p>
-<p class="stat"><b>${(100 * PASS / C.length).toFixed(2)}%</b> of the 1,330 Thirukkural couplets pass (source corrections applied)</p></section>
+<p class="stat"><b>${(100 * PASS / C.length).toFixed(2)}%</b> of the 1,330 Thirukkural couplets pass (source corrections from two Wikisource editions applied)</p></section>
 <section class="card checker"><label for="kt" class="lbl">Paste a kural (two lines, 4 + 3 seers)</label>
 <textarea id="kt" rows="3" lang="ta" class="ta" placeholder="அகர முதல எழுத்தெல்லாம் ஆதி&#10;பகவன் முதற்றே உலகு."></textarea>
 <div class="row"><button id="go" class="primary">Check meter</button><button class="ex" data-ex="0">Example: valid</button><button class="ex" data-ex="1">Example: broken</button><button class="ex" data-ex="2">Example: re-segmented</button>
@@ -80,7 +80,7 @@ const pages: Record<string, () => Response> = {
   "/about": () => shell("/about", "About", `<section class="hero sm"><h1>About yaappu</h1></section><article class="card prose">
 <p><b>yaappu</b> (<span class="ta">யாப்பு</span>, "prosody") is a rule-based Tamil meter toolkit. It includes a kural venba checker, a phonotactic filter and a constrained decoder that makes a language model write couplets that always scan.</p>
 <h3>How the checker works</h3><ol><li>The text is split into letters: kuril (short), nedil (long) and ottru (pure consonant).</li><li>Letters are grouped into asai. <span class="chip ner">ner</span> is one syllable plus its consonants; <span class="chip nirai">nirai</span> is a short syllable plus the next syllable.</li><li>Asai are grouped into seer: தேமா, புளிமா, கூவிளம், கருவிளம் and the காய் seers. Kani seers are not allowed.</li><li>Venthalai: a மா seer must be followed by nirai; a விளம் or காய் seer by ner. The last seer must be நாள், மலர், காசு or பிறப்பு.</li><li>Kutriyalukaram elision and resyllabification across word boundaries are handled. The <i>licensed</i> mode also applies kutriyalikaram, for example செல்வத்திற்கு யாதெனின்.</li></ol>
-<h3>Numbers</h3><p>${PASS}/1330 kurals pass with the licensed checker on source-corrected text. 13 typo fixes were verified against Tamil Wikisource, plus a ௌ normalisation. The base checker passes 1284/1330 on the raw text. This site's TypeScript checker gives the same result as the Python reference on 6,650 test cases.</p>
+<h3>Numbers</h3><p>${PASS}/1330 kurals pass with the licensed checker on source-corrected text. The corrections (typos, variant readings and the edition's seer division) were verified against two Tamil Wikisource editions, the moolam text and the Parimelazhagar urai. They are listed in data/errata.json. Kurals 778 and 832 still fail, and are left failing rather than forced through with an exception. The base checker passes 1284/1330 on the raw text. This site's TypeScript checker gives the same result as the Python reference on 6,650 test cases.</p>
 <h3>API</h3><pre>POST /api/check {"text": "...", "mode": "licensed" | "base"}
 GET  /api/corpus</pre></article>`),
 };

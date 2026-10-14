@@ -53,3 +53,32 @@ Remaining failures (default L1, errata=all):
 - **seer_length** (1): 832: seer1 பேதைமையுள் 4 asai
 
 Recovered by licenses (10): 178 (licensed: L1@w2); 254 (licensed: L1@w1); 291 (licensed: L1@w2); 324 (licensed: L1@w2); 585 (licensed: L1@w3); 801 (licensed: L1@w2); 844 (licensed: L1@w2); 895 (licensed: L1@w1); 1041 (licensed: L1@w2); 1299 (licensed: L1@w1)
+
+## Second edition: Tamil Wikisource, Parimelazhagar urai (2026-10-14)
+
+The 14 kurals that still failed were each checked against the metrical (seer-divided) text of *திருக்குறள் பரிமேலழகர் உரை* on Tamil Wikisource ("பிழைநீக்கிய மெய்ப்பதிப்பு"). Each entry in `data/errata.json` records the page URL, the revision id and the exact line. **No checker rule changed**, so the shuffle control stays at 14/1305.
+
+- **typo** (applied at `errata=typo`): 114 காணப்ப→காணப், 434 த்ரூஉம்→தரூஉம், 719 நன்குசலச்→நன்கு செல, 858 மிக்லூக்கின்→மிகலூக்கின், 882 வாள்போல→வாள்போல்.
+- **variant** (`errata=all` only): the Wikisource moolam text agrees with the raw source, and the Parimelazhagar reading is adopted: 738 நாட்டிவ்→நாட்டிற்கிவ், 1134 உய்க்கும்→உய்க்குமே, 1249 லவரால்→லவராக.
+- **seer_division** (`errata=all` only): the words are the same. The edition's metrical text divides seers across word boundaries (vakaiyuli), and that text is used as the scansion text: 4, 170, 278, 764.
+- **Still failing (2):**
+  - 778, செறினும் சீர்குன்றல்: a puḷimā seer followed by a ner-initial seer.
+  - 832, பேதைமையுள் எல்லாம் பேதைமை: a 4-asai first seer, and a tēmā seer followed by ner.
+  
+  Both also fail on the Parimelazhagar text itself. Fixing them would need a rule I can't cite from Yapparungalakkarigai or Tolkappiyam with confidence, so they are left as failures. Aikaarakkurukkam (L2) doesn't fix 832 and adds a shuffle false accept.
+- **Held-out:** the same checker on the Parimelazhagar edition's own metrical text (1,291 parsed couplets) passes 1149 (base) and 1157 (licensed). That's 89.6%, with no tuning to that edition. Some of the failures there are parsing noise.
+- **Naladiyar:** not run. The checker handles only kural venba (7 seers), and Naladiyar is alaviyal venba.
+
+Reproduce: `python3 scripts/bench_reseg.py`
+
+| checker | raw | errata=typo | errata=all | shuffle false-accept |
+|---|---|---|---|---|
+| baseline | 1284/1330 = 96.54% | 1306/1330 = 98.20% | 1318/1330 = 99.10% | 14/1305 = 1.07% |
+| L1 | 1294/1330 = 97.29% | 1316/1330 = 98.95% | 1328/1330 = 99.85% | 14/1305 = 1.07% |
+| L1+L2 | 1295/1330 = 97.37% | 1316/1330 = 98.95% | 1328/1330 = 99.85% | 15/1305 = 1.15% |
+
+Remaining failures (default L1, errata=all):
+- **thalai** (1): 778: செறினும்->சீர்குன்றல் need nirai
+- **seer_length** (1): 832: seer1 பேதைமையுள் 4 asai
+
+Recovered by licenses (10): 178 (licensed: L1@w2); 254 (licensed: L1@w1); 291 (licensed: L1@w2); 324 (licensed: L1@w2); 585 (licensed: L1@w3); 801 (licensed: L1@w2); 844 (licensed: L1@w2); 895 (licensed: L1@w1); 1041 (licensed: L1@w2); 1299 (licensed: L1@w1)
