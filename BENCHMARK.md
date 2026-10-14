@@ -1,3 +1,9 @@
+# Benchmark
+
+Reproduce: `python3 scripts/bench.py > BENCHMARK.md` (pure Python, deterministic; data in `data/`).
+
+Note: the 72.5% -> 93.8% jump quoted earlier was measured between intermediate rule versions (before aytham, resyllabification and seer-join rules existed). The reproducible elision ablation against the final rule set is below.
+
 ## Meter: 1284/1330 = 96.54% pass
 
 - **thalai** (18): 4: வேண்டாமை->இலானடி need ner; 39: இன்பம்->மற்றெல்லாம் need nirai; 114: காணப்ப->படும். need ner; 170: இல்லை->அஃத்இல்லார் need nirai; 254: அருளல்ல->தியாதெனிற் need ner; 278: மாண்டார்->நீராடி need nirai; 360: மயக்கம்->இவ்மூன்றன் need nirai; 653: ஒஓதல்->வேண்டும் need nirai; 719: சொல்லு->வார். need nirai; 738: நாட்டிவ்->வைந்து. need nirai; 764: அழிவின்றி->அறைபோகா need ner; 775: வேல்கொண->டெறிய need ner; 778: செறினும்->சீர்குன்றல் need nirai; 844: எனப்படுவ->தியாதெனின் need ner; 882: வாள்போல->பகைவரை need ner; 1134: உய்க்கும்->நாணொடு need nirai; 1202: எனைத்தொனற்->இனிதேகாண் need ner; 1249: லவரால்->உள்ளிநீ need nirai
@@ -33,6 +39,10 @@
 - cluster ந்த் (1): அற்றந்த்ரூஉம்
 - cluster வ்ரு (1): யானை஦வ்ருஉம்
 - cluster ம்த் (1): ஆக்கம்த்ருஉம்
+
+## Shuffle test (word order randomised, seed 0): 14/1305 = 1.1% still accepted
+
+## Ablation: kutriyalukaram elision off: 1009/1330 = 75.86% (full rule set: 1284/1330 = 96.54%)
 
 ## Errata + rule-licensed re-segmentation (scripts/bench_reseg.py)
 

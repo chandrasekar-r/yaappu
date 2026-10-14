@@ -50,3 +50,9 @@ def test_parimelazhagar_errata_levels():
         assert check_kural_licensed(text(allk, n)).ok, n
     fails = [k["Number"] for k in allk if not check_kural_licensed(k["Line1"] + "\n" + k["Line2"]).ok]
     assert fails == [778, 832], fails
+
+
+def test_bundled_data_in_sync():
+    root = os.path.join(os.path.dirname(__file__), "..")
+    for f in ("thirukkural.json", "errata.json"):
+        assert open(os.path.join(root, "data", f), "rb").read() == open(os.path.join(root, "yaappu", "data", f), "rb").read(), f

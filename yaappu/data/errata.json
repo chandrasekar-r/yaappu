@@ -1,0 +1,663 @@
+{
+ "description": "Source errata for data/thirukkural.json. Raw data is never modified; apply with yaappu.errata.load_kurals(errata=...). Levels: 'typo' = normalisation + type 'typo'; 'all' = every entry (adds 'segmentation', 'variant', 'seer_division').",
+ "normalize": [
+  {
+   "rule": "U+0BC6 (ெ) + ள not followed by a combining mark -> ௌ (U+0BCC)",
+   "example": "கெளவை -> கௌவை",
+   "affects": [
+    1143,
+    1147,
+    1148,
+    1150
+   ],
+   "justification": "Legacy-font artefact: the word is kauvai (gossip; cf. கவ்வை in 1144). Both Project Madurai (pmuni0001 kural 1143) and Wikisource also write ெ+ள, so this is an orthographic normalisation, not a textual variant."
+  }
+ ],
+ "unverified": [],
+ "entries": [
+  {
+   "number": 4,
+   "type": "seer_division",
+   "raw": {
+    "Line1": "வேண்டுதல் வேண்டாமை இலானடி சேர்ந்தார்க்கு",
+    "Line2": "யாண்டும் இடும்பை இல."
+   },
+   "corrected": {
+    "Line1": "வேண்டுதல்வேண் டாமை யிலானடி சேர்ந்தார்க்",
+    "Line2": "கியாண்டு மிடும்பை யில"
+   },
+   "source": {
+    "name": "Tamil Wikisource, திருக்குறள் பரிமேலழகர் உரை (பிழைநீக்கிய மெய்ப்பதிப்பு; metrical, seer-divided text)",
+    "url": "https://ta.wikisource.org/wiki/திருக்குறள்_பரிமேலழகர்_உரை/அறத்துப்பால்/1.கடவுள்வாழ்த்து",
+    "revid": 1490389,
+    "line": "வேண்டுதல்வேண் டாமை யிலானடி சேர்ந்தார்க் / கியாண்டு மிடும்பை யில"
+   },
+   "note": "Same words; the edition's metrical text divides seers across word boundaries (vakaiyuli) and writes puṇarchi sandhi. Used as the scansion text."
+  },
+  {
+   "number": 39,
+   "type": "segmentation",
+   "raw": {
+    "Line1": "அறத்தான் வருவதே இன்பம் மற்றெல்லாம்",
+    "Line2": "புறத்த புகழும் இல."
+   },
+   "corrected": {
+    "Line1": "அறத்தான் வருவதே இன்பம்மற் றெல்லாம்",
+    "Line2": "புறத்த புகழும் இல."
+   },
+   "source": {
+    "name": "Tamil Wikisource, திருக்குறள், மூலம் (proofread transcription of the scanned edition)",
+    "url": "https://ta.wikisource.org/wiki/திருக்குறள்,_மூலம்/அறன்_வலியுறுத்தல்",
+    "revid": 1531584,
+    "line": "அறத்தான் வருவதே இன்பம்மற் றெல்லாம் / புறத்த புகழும் இல."
+   },
+   "project_madurai": {
+    "url": "https://www.projectmadurai.org/pm_etexts/utf8/pmuni0001.html",
+    "line": "அறத்தான் வருவதே இன்பம் மற் றெல்லாம் புறத்த புகழும் இல.",
+    "agrees_with_correction": true
+   }
+  },
+  {
+   "number": 42,
+   "type": "segmentation",
+   "raw": {
+    "Line1": "துறந்தார்க்கும் துவ்வாதவர்க்கும் இறந்தார்க்கும்",
+    "Line2": "இல்வாழ்வான் என்பான் துணை."
+   },
+   "corrected": {
+    "Line1": "துறந்தார்க்கும் துவ்வா தவர்க்கும் இறந்தார்க்கும்",
+    "Line2": "இல்வாழ்வான் என்பான் துணை."
+   },
+   "source": {
+    "name": "Tamil Wikisource, திருக்குறள், மூலம் (proofread transcription of the scanned edition)",
+    "url": "https://ta.wikisource.org/wiki/திருக்குறள்,_மூலம்/இல்_வாழ்க்கை",
+    "revid": 1531585,
+    "line": "துறந்தார்க்கும் துவ்வா தவர்க்கும் இறந்தார்க்கும் / இல்வாழ்வான் என்பான் துணை."
+   },
+   "project_madurai": {
+    "url": "https://www.projectmadurai.org/pm_etexts/utf8/pmuni0001.html",
+    "line": "துறந்தார்க்கும் துவ்வாதவர்க்கும் இறந்தார்க்கும் இல்வாழ்வான் என்பான் துணை.",
+    "agrees_with_correction": true
+   }
+  },
+  {
+   "number": 93,
+   "type": "segmentation",
+   "raw": {
+    "Line1": "முகத்தான் அமர்ந்து இனிதுநோக்கி அகத்தானாம்",
+    "Line2": "இன்சொ லினதே அறம்."
+   },
+   "corrected": {
+    "Line1": "முகத்தான் அமர்ந்துஇனிது நோக்கி அகத்தானாம்",
+    "Line2": "இன்சொ லினதே அறம்."
+   },
+   "source": {
+    "name": "Tamil Wikisource, திருக்குறள், மூலம் (proofread transcription of the scanned edition)",
+    "url": "https://ta.wikisource.org/wiki/திருக்குறள்,_மூலம்/இனியவை_கூறல்",
+    "revid": 1531593,
+    "line": "முகத்தான் அமர்ந்துஇனிது நோக்கி அகத்தானாம் / இன்சொ லினதே அறம்."
+   },
+   "project_madurai": {
+    "url": "https://www.projectmadurai.org/pm_etexts/utf8/pmuni0001.html",
+    "line": "முகத்தான் அமர்ந் துஇனிது நோக்கி அகத்தானாம் இன்சொ லினதே அறம்.",
+    "agrees_with_correction": true
+   }
+  },
+  {
+   "number": 98,
+   "type": "typo",
+   "raw": {
+    "Line1": "சிறுமையுவு நீங்கிய இன்சொல் மறுமையும்",
+    "Line2": "இம்மையும் இன்பம் தரும்."
+   },
+   "corrected": {
+    "Line1": "சிறுமையுள் நீங்கிய இன்சொல் மறுமையும்",
+    "Line2": "இம்மையும் இன்பம் தரும்."
+   },
+   "source": {
+    "name": "Tamil Wikisource, திருக்குறள், மூலம் (proofread transcription of the scanned edition)",
+    "url": "https://ta.wikisource.org/wiki/திருக்குறள்,_மூலம்/இனியவை_கூறல்",
+    "revid": 1531593,
+    "line": "சிறுமையுள் நீங்கிய இன்சொல் மறுமையும் / இம்மையும் இன்பம் தரும்."
+   },
+   "project_madurai": {
+    "url": "https://www.projectmadurai.org/pm_etexts/utf8/pmuni0001.html",
+    "line": "சிறுமையுவு  நீங்கிய இன்சொல் மறுமையும் இம்மையும் இன்பம் தரும்.",
+    "agrees_with_correction": false
+   }
+  },
+  {
+   "number": 114,
+   "type": "typo",
+   "raw": {
+    "Line1": "தக்கார் தகவிலர் என்பது அவரவர்",
+    "Line2": "எச்சத்தாற் காணப்ப படும்."
+   },
+   "corrected": {
+    "Line1": "தக்கார் தகவிலர் என்பது அவரவர்",
+    "Line2": "எச்சத்தாற் காணப் படும்."
+   },
+   "source": {
+    "name": "Tamil Wikisource, திருக்குறள் பரிமேலழகர் உரை (பிழைநீக்கிய மெய்ப்பதிப்பு; metrical, seer-divided text)",
+    "url": "https://ta.wikisource.org/wiki/திருக்குறள்_பரிமேலழகர்_உரை/அறத்துப்பால்/12.நடுவுநிலைமை",
+    "revid": 1237155,
+    "line": "தக்கார் தகவில ரென்ப தவரவ / ரெச்சத்தாற் காணப் படும்."
+   },
+   "note": "orthographic error in the source; the Parimelazhagar edition has the corrected word"
+  },
+  {
+   "number": 154,
+   "type": "typo",
+   "raw": {
+    "Line1": "நிறையுடைமை நீங்காமை வேண்டின் பொற்யுடைமை",
+    "Line2": "போற்றி யொழுகப் படும்."
+   },
+   "corrected": {
+    "Line1": "நிறையுடைமை நீங்காமை வேண்டின் பொறையுடைமை",
+    "Line2": "போற்றி யொழுகப் படும்."
+   },
+   "source": {
+    "name": "Tamil Wikisource, திருக்குறள், மூலம் (proofread transcription of the scanned edition)",
+    "url": "https://ta.wikisource.org/wiki/திருக்குறள்,_மூலம்/பொறை_உடைமை",
+    "revid": 1531602,
+    "line": "நிறையுடைமை நீங்காமை வேண்டின் பொறையுடைமை / போற்றி யொழுகப் படும்."
+   },
+   "project_madurai": {
+    "url": "https://www.projectmadurai.org/pm_etexts/utf8/pmuni0001.html",
+    "line": "நிறையுடைமை நீங்காமை வேண்டின் பொநற்யுடைமை போற்றி யொழுகப் படும்.",
+    "agrees_with_correction": false
+   }
+  },
+  {
+   "number": 170,
+   "type": "seer_division",
+   "raw": {
+    "Line1": "அழுக்கற்று அகன்றாரும் இல்லை அஃதுஇல்லார்",
+    "Line2": "பெருக்கத்தில் தீர்ந்தாரும் இல்."
+   },
+   "corrected": {
+    "Line1": "அழுக்கற் றகன்றாரு மில்லையஃ தில்லார்",
+    "Line2": "பெருக்கத்திற் றீர்ந்தாரு மில்"
+   },
+   "source": {
+    "name": "Tamil Wikisource, திருக்குறள் பரிமேலழகர் உரை (பிழைநீக்கிய மெய்ப்பதிப்பு; metrical, seer-divided text)",
+    "url": "https://ta.wikisource.org/wiki/திருக்குறள்_பரிமேலழகர்_உரை/அறத்துப்பால்/17.அழுக்காறாமை",
+    "revid": 483487,
+    "line": "அழுக்கற் றகன்றாரு மில்லையஃ தில்லார் / பெருக்கத்திற் றீர்ந்தாரு மில்"
+   },
+   "note": "Same words; the edition's metrical text divides seers across word boundaries (vakaiyuli) and writes puṇarchi sandhi. Used as the scansion text."
+  },
+  {
+   "number": 269,
+   "type": "typo",
+   "raw": {
+    "Line1": "கூற்றம் குதித்தலும் கைகூடும் நோற்றலின்",
+    "Line2": "ஆற்றல் தலைப்பட் டவர்க்குல்."
+   },
+   "corrected": {
+    "Line1": "கூற்றம் குதித்தலும் கைகூடும் நோற்றலின்",
+    "Line2": "ஆற்றல் தலைப்பட் டவர்க்கு."
+   },
+   "source": {
+    "name": "Tamil Wikisource, திருக்குறள், மூலம் (proofread transcription of the scanned edition)",
+    "url": "https://ta.wikisource.org/wiki/திருக்குறள்,_மூலம்/தவம்",
+    "revid": 1531623,
+    "line": "கூற்றம் குதித்தலும் கைகூடும் நோற்றலின் / ஆற்றல் தலைப்பட் டவர்க்கு."
+   },
+   "project_madurai": {
+    "url": "https://www.projectmadurai.org/pm_etexts/utf8/pmuni0001.html",
+    "line": "கூற்றம் குதித்தலும் கைகூடும் நோற்றலின் ஆற்றல் தலைப்பட் டவர்க்குல்.",
+    "agrees_with_correction": false
+   }
+  },
+  {
+   "number": 278,
+   "type": "seer_division",
+   "raw": {
+    "Line1": "மனத்தது மாசாக மாண்டார் நீராடி",
+    "Line2": "மறைந்தொழுகு மாந்தர் பலர்."
+   },
+   "corrected": {
+    "Line1": "மனத்தது மாசாக மாண்டார்நீ ராடி",
+    "Line2": "மறைந்தொழுகு மாந்தர் பலர்"
+   },
+   "source": {
+    "name": "Tamil Wikisource, திருக்குறள் பரிமேலழகர் உரை (பிழைநீக்கிய மெய்ப்பதிப்பு; metrical, seer-divided text)",
+    "url": "https://ta.wikisource.org/wiki/திருக்குறள்_பரிமேலழகர்_உரை/அறத்துப்பால்/28.கூடாவொழுக்கம்",
+    "revid": 483499,
+    "line": "மனத்தது மாசாக மாண்டார்நீ ராடி / மறைந்தொழுகு மாந்தர் பலர்"
+   },
+   "note": "Same words; the edition's metrical text divides seers across word boundaries (vakaiyuli) and writes puṇarchi sandhi. Used as the scansion text."
+  },
+  {
+   "number": 287,
+   "type": "typo",
+   "raw": {
+    "Line1": "களவென்னும் காரறி வாண்மை அளவென்னும்",
+    "Line2": "ஆற்றல் புரிந்தார்கண்ட இல்."
+   },
+   "corrected": {
+    "Line1": "களவென்னும் காரறி வாண்மை அளவென்னும்",
+    "Line2": "ஆற்றல் புரிந்தார்கண் இல்."
+   },
+   "source": {
+    "name": "Tamil Wikisource, திருக்குறள், மூலம் (proofread transcription of the scanned edition)",
+    "url": "https://ta.wikisource.org/wiki/திருக்குறள்,_மூலம்/கள்ளாமை",
+    "revid": 1531625,
+    "line": "களவென்னும் காரறி வாண்மை அளவென்னும் / ஆற்றல் புரிந்தார்கண் இல்."
+   },
+   "project_madurai": {
+    "url": "https://www.projectmadurai.org/pm_etexts/utf8/pmuni0001.html",
+    "line": "களவென்னும் காரறி வாண்மை அளவென்னும் ஆற்றல் புரிந்தார்கண்ட இல்.",
+    "agrees_with_correction": false
+   }
+  },
+  {
+   "number": 360,
+   "type": "typo",
+   "raw": {
+    "Line1": "காமம் வெகுளி மயக்கம் இவ்மூன்றன்",
+    "Line2": "நாமம் கெடக்கெடும் நோய்."
+   },
+   "corrected": {
+    "Line1": "காமம் வெகுளி மயக்கம் இவைமூன்றன்",
+    "Line2": "நாமம் கெடக்கெடும் நோய்."
+   },
+   "source": {
+    "name": "Tamil Wikisource, திருக்குறள், மூலம் (proofread transcription of the scanned edition)",
+    "url": "https://ta.wikisource.org/wiki/திருக்குறள்,_மூலம்/மெய்_உணர்தல்",
+    "revid": 1531632,
+    "line": "காமம் வெகுளி மயக்கம் இவைமூன்றன் / நாமம் கெடக்கெடும் நோய்."
+   },
+   "project_madurai": {
+    "url": "https://www.projectmadurai.org/pm_etexts/utf8/pmuni0001.html",
+    "line": "காமம் வெகுளி மயக்கம் இநவ்முன்றன் நாமம் கெடக்கெடும் நோய்.",
+    "agrees_with_correction": false
+   }
+  },
+  {
+   "number": 434,
+   "type": "typo",
+   "raw": {
+    "Line1": "குற்றமே காக்க பொருளாகக் குற்றமே",
+    "Line2": "அற்றந் த்ரூஉம் பகை."
+   },
+   "corrected": {
+    "Line1": "குற்றமே காக்க பொருளாகக் குற்றமே",
+    "Line2": "அற்றந் தரூஉம் பகை."
+   },
+   "source": {
+    "name": "Tamil Wikisource, திருக்குறள் பரிமேலழகர் உரை (பிழைநீக்கிய மெய்ப்பதிப்பு; metrical, seer-divided text)",
+    "url": "https://ta.wikisource.org/wiki/திருக்குறள்_பரிமேலழகர்_உரை/பொருட்பால்/44.குற்றங்கடிதல்",
+    "revid": 1495988,
+    "line": "குற்றமே காக்க பொருளாக குற்றமே / யற்றந் தரூஉம் பகை"
+   },
+   "note": "orthographic error in the source; the Parimelazhagar edition has the corrected word"
+  },
+  {
+   "number": 599,
+   "type": "typo",
+   "raw": {
+    "Line1": "பரியது கூர்ங்கோட்டது ஆயினும் யானை",
+    "Line2": "஦வ்ருஉம் புலிதாக் குறின்."
+   },
+   "corrected": {
+    "Line1": "பரியது கூர்ங்கோட்டது ஆயினும் யானை",
+    "Line2": "வெரூஉம் புலிதாக் குறின்."
+   },
+   "source": {
+    "name": "Tamil Wikisource, திருக்குறள், மூலம் (proofread transcription of the scanned edition)",
+    "url": "https://ta.wikisource.org/wiki/திருக்குறள்,_மூலம்/ஊக்கம்_உடைமை",
+    "revid": 1531659,
+    "line": "பரியது கூர்ங்கோட்டது ஆயினும் யானை / வெரூஉம் புலிதாக் குறின்."
+   },
+   "project_madurai": {
+    "url": "https://www.projectmadurai.org/pm_etexts/utf8/pmuni0001.html",
+    "line": "பரியது கூர்ங்கோட்டது ஆயினும் யானை ஦வ்ருஉம் புலிதாக் குறின்.",
+    "agrees_with_correction": false
+   }
+  },
+  {
+   "number": 651,
+   "type": "typo",
+   "raw": {
+    "Line1": "துணைநலம் ஆக்கம் த்ருஉம் வினைநலம்",
+    "Line2": "வேண்டிய எல்லாந் தரும்."
+   },
+   "corrected": {
+    "Line1": "துணைநலம் ஆக்கம் தரூஉம் வினைநலம்",
+    "Line2": "வேண்டிய எல்லாந் தரும்."
+   },
+   "source": {
+    "name": "Tamil Wikisource, திருக்குறள், மூலம் (proofread transcription of the scanned edition)",
+    "url": "https://ta.wikisource.org/wiki/திருக்குறள்,_மூலம்/வினைத்_தூய்மை",
+    "revid": 1531676,
+    "line": "துணைநலம் ஆக்கம் தரூஉம் வினைநலம் / வேண்டிய எல்லாந் தரும்."
+   },
+   "project_madurai": {
+    "url": "https://www.projectmadurai.org/pm_etexts/utf8/pmuni0001.html",
+    "line": "துணைநலம் ஆக்கம் த்ருஉம் வினைநலம் வேண்டிய எல்லாந் தரும்.",
+    "agrees_with_correction": false
+   }
+  },
+  {
+   "number": 653,
+   "type": "typo",
+   "raw": {
+    "Line1": "ஒஓதல் வேண்டும் ஒளிமாழ்கும் செய்வினை",
+    "Line2": "ஆஅதும் என்னு மவர்."
+   },
+   "corrected": {
+    "Line1": "ஓஒதல் வேண்டும் ஒளிமாழ்கும் செய்வினை",
+    "Line2": "ஆஅதும் என்னு மவர்."
+   },
+   "source": {
+    "name": "Tamil Wikisource, திருக்குறள், மூலம் (proofread transcription of the scanned edition)",
+    "url": "https://ta.wikisource.org/wiki/திருக்குறள்,_மூலம்/வினைத்_தூய்மை",
+    "revid": 1531676,
+    "line": "ஓஒதல் வேண்டும் ஒளிமாழ்கும் செய்வினை / ஆஅதும் என்னு மவர்."
+   },
+   "project_madurai": {
+    "url": "https://www.projectmadurai.org/pm_etexts/utf8/pmuni0001.html",
+    "line": "ஒஓதல் வேண்டும் ஒளிமாழ்கும் செய்வினை ஆஅதும் என்னு மவர்.",
+    "agrees_with_correction": false
+   }
+  },
+  {
+   "number": 689,
+   "type": "segmentation",
+   "raw": {
+    "Line1": "விடுமாற்றம் வேந்தர்க்கு உரைப்பான் வடுமாற்றம்",
+    "Line2": "வாய்சேரா வன்கணவன்."
+   },
+   "corrected": {
+    "Line1": "விடுமாற்றம் வேந்தர்க்கு உரைப்பான் வடுமாற்றம்",
+    "Line2": "வாய்சேரா வன்க ணவன்."
+   },
+   "source": {
+    "name": "Tamil Wikisource, திருக்குறள், மூலம் (proofread transcription of the scanned edition)",
+    "url": "https://ta.wikisource.org/wiki/திருக்குறள்,_மூலம்/தூது",
+    "revid": 1531680,
+    "line": "விடுமாற்றம் வேந்தர்க்கு உரைப்பான் வடுமாற்றம் / வாய்சேரா வன்க ணவன்."
+   },
+   "project_madurai": {
+    "url": "https://www.projectmadurai.org/pm_etexts/utf8/pmuni0001.html",
+    "line": "விடுமாற்றம் வேந்தர்க்கு உரைப்பான் வடுமாற்றம் வாய்சேரா வன்க ணவன்.",
+    "agrees_with_correction": true
+   }
+  },
+  {
+   "number": 719,
+   "type": "typo",
+   "raw": {
+    "Line1": "புல்லவையுள் பொச்சாந்தும் சொல்லற்க நல்லவையுள்",
+    "Line2": "நன்குசலச் சொல்லு வார்."
+   },
+   "corrected": {
+    "Line1": "புல்லவையுள் பொச்சாந்தும் சொல்லற்க நல்லவையுள்",
+    "Line2": "நன்கு செலச்சொல்லு வார்."
+   },
+   "source": {
+    "name": "Tamil Wikisource, திருக்குறள் பரிமேலழகர் உரை (பிழைநீக்கிய மெய்ப்பதிப்பு; metrical, seer-divided text)",
+    "url": "https://ta.wikisource.org/wiki/திருக்குறள்_பரிமேலழகர்_உரை/பொருட்பால்/72.அவையறிதல்",
+    "revid": 493875,
+    "line": "புல்லவையுட் பொச்சாந்துஞ் சொல்லற்க நல்லவையு / ணன்கு செலச்சொல்லு வார்."
+   },
+   "note": "orthographic error in the source; the Parimelazhagar edition has the corrected word"
+  },
+  {
+   "number": 738,
+   "type": "variant",
+   "raw": {
+    "Line1": "பிணியின்மை செல்வம் விளைவின்பம் ஏமம்",
+    "Line2": "அணியென்ப நாட்டிவ் வைந்து."
+   },
+   "corrected": {
+    "Line1": "பிணியின்மை செல்வம் விளைவின்பம் ஏமம்",
+    "Line2": "அணியென்ப நாட்டிற்கிவ் வைந்து."
+   },
+   "source": {
+    "name": "Tamil Wikisource, திருக்குறள் பரிமேலழகர் உரை (பிழைநீக்கிய மெய்ப்பதிப்பு; metrical, seer-divided text)",
+    "url": "https://ta.wikisource.org/wiki/திருக்குறள்_பரிமேலழகர்_உரை/பொருட்பால்/74.நாடு",
+    "revid": 483662,
+    "line": "பிணியின்மை செல்வம் விளைவின்ப மேம / மணியென்ப நாட்டிற்கிவ் வைந்து."
+   },
+   "note": "textual variant: the Wikisource moolam text agrees with the raw source; the Parimelazhagar edition reading is adopted"
+  },
+  {
+   "number": 764,
+   "type": "seer_division",
+   "raw": {
+    "Line1": "அழிவின்றி அறைபோகா தாகி வழிவந்த",
+    "Line2": "வன்க ணதுவே படை."
+   },
+   "corrected": {
+    "Line1": "அழிவின் றறைபோகா தாகி வழிவந்த",
+    "Line2": "வன்க ணதுவே படை"
+   },
+   "source": {
+    "name": "Tamil Wikisource, திருக்குறள் பரிமேலழகர் உரை (பிழைநீக்கிய மெய்ப்பதிப்பு; metrical, seer-divided text)",
+    "url": "https://ta.wikisource.org/wiki/திருக்குறள்_பரிமேலழகர்_உரை/பொருட்பால்/77.படைமாட்சி",
+    "revid": 483665,
+    "line": "அழிவின் றறைபோகா தாகி வழிவந்த / வன்க ணதுவே படை"
+   },
+   "note": "Same words; the edition's metrical text divides seers across word boundaries (vakaiyuli) and writes puṇarchi sandhi. Used as the scansion text."
+  },
+  {
+   "number": 775,
+   "type": "typo",
+   "raw": {
+    "Line1": "விழித்தகண் வேல்கொண டெறிய அழித்திமைப்பின்",
+    "Line2": "ஒட்டன்றோ வன்க ணவர்க்கு."
+   },
+   "corrected": {
+    "Line1": "விழித்தகண் வேல்கொண் டெறிய அழித்திமைப்பின்",
+    "Line2": "ஒட்டன்றோ வன்க ணவர்க்கு."
+   },
+   "source": {
+    "name": "Tamil Wikisource, திருக்குறள், மூலம் (proofread transcription of the scanned edition)",
+    "url": "https://ta.wikisource.org/wiki/திருக்குறள்,_மூலம்/படைச்_செருக்கு",
+    "revid": 1531704,
+    "line": "விழித்தகண் வேல்கொண் டெறிய அழித்திமைப்பின் / ஒட்டன்றோ வன்க ணவர்க்கு."
+   },
+   "project_madurai": {
+    "url": "https://www.projectmadurai.org/pm_etexts/utf8/pmuni0001.html",
+    "line": "விழித்தகண் வேல்கொண டெறிய அழித்திமைப்பின் ஒட்டன்றோ வன்க ணவர்க்கு.",
+    "agrees_with_correction": false
+   },
+   "note": "missing pulli: வேல்கொண -> வேல்கொண்"
+  },
+  {
+   "number": 795,
+   "type": "typo",
+   "raw": {
+    "Line1": "அழச்சொல்லி அல்லது இடித்து வழக்கறிய",
+    "Line2": "வல்லார்நடபு ஆய்ந்து கொளல்."
+   },
+   "corrected": {
+    "Line1": "அழச்சொல்லி அல்லது இடித்து வழக்கறிய",
+    "Line2": "வல்லார்நட்பு ஆய்ந்து கொளல்."
+   },
+   "source": {
+    "name": "Tamil Wikisource, திருக்குறள், மூலம் (proofread transcription of the scanned edition)",
+    "url": "https://ta.wikisource.org/wiki/திருக்குறள்,_மூலம்/நட்பு_ஆராய்தல்",
+    "revid": 1531706,
+    "line": "அழச்சொல்லி அல்லது இடித்து வழக்கறிய / வல்லார்நட்பு ஆய்ந்து கொளல்."
+   },
+   "project_madurai": {
+    "url": "https://www.projectmadurai.org/pm_etexts/utf8/pmuni0001.html",
+    "line": "அழச்சொல்லி அல்லது இடித்து வழக்கறிய வல்லார்நடபு ஆய்ந்து கொளல்.",
+    "agrees_with_correction": false
+   }
+  },
+  {
+   "number": 855,
+   "type": "typo",
+   "raw": {
+    "Line1": "இகலெதிர் சாய்ந்தொழுக வல்லாரை யாரே",
+    "Line2": "மிக்லூக்கும் தன்மை யவர்."
+   },
+   "corrected": {
+    "Line1": "இகலெதிர் சாய்ந்தொழுக வல்லாரை யாரே",
+    "Line2": "மிகலூக்கும் தன்மை யவர்."
+   },
+   "source": {
+    "name": "Tamil Wikisource, திருக்குறள், மூலம் (proofread transcription of the scanned edition)",
+    "url": "https://ta.wikisource.org/wiki/திருக்குறள்,_மூலம்/இகல்",
+    "revid": 1531712,
+    "line": "இகலெதிர் சாய்ந்தொழுக வல்லாரை யாரே / மிகலூக்கும் தன்மை யவர்."
+   },
+   "project_madurai": {
+    "url": "https://www.projectmadurai.org/pm_etexts/utf8/pmuni0001.html",
+    "line": "இகலெதிர் சாய்ந்தொழுக வல்லாரை யாரே மிக்லூக்கும் தன்மை யவர்.",
+    "agrees_with_correction": false
+   }
+  },
+  {
+   "number": 858,
+   "type": "typo",
+   "raw": {
+    "Line1": "இகலிற்கு எதிர்சாய்தல் ஆக்கம் அதனை",
+    "Line2": "மிக்லூக்கின் ஊக்குமாம் கேடு."
+   },
+   "corrected": {
+    "Line1": "இகலிற்கு எதிர்சாய்தல் ஆக்கம் அதனை",
+    "Line2": "மிகலூக்கின் ஊக்குமாம் கேடு."
+   },
+   "source": {
+    "name": "Tamil Wikisource, திருக்குறள் பரிமேலழகர் உரை (பிழைநீக்கிய மெய்ப்பதிப்பு; metrical, seer-divided text)",
+    "url": "https://ta.wikisource.org/wiki/திருக்குறள்_பரிமேலழகர்_உரை/பொருட்பால்/86.இகல்",
+    "revid": 483675,
+    "line": "இகலிற் கெதிர்சாய்த லாக்க மதனை / மிகலூக்கி னூக்குமாங் கேடு."
+   },
+   "note": "orthographic error in the source; the Parimelazhagar edition has the corrected word"
+  },
+  {
+   "number": 882,
+   "type": "typo",
+   "raw": {
+    "Line1": "வாள்போல பகைவரை அஞ்சற்க அஞ்சுக",
+    "Line2": "கேள்போல் பகைவர் தொடர்பு."
+   },
+   "corrected": {
+    "Line1": "வாள்போல் பகைவரை அஞ்சற்க அஞ்சுக",
+    "Line2": "கேள்போல் பகைவர் தொடர்பு."
+   },
+   "source": {
+    "name": "Tamil Wikisource, திருக்குறள் பரிமேலழகர் உரை (பிழைநீக்கிய மெய்ப்பதிப்பு; metrical, seer-divided text)",
+    "url": "https://ta.wikisource.org/wiki/திருக்குறள்_பரிமேலழகர்_உரை/பொருட்பால்/89.உட்பகை.",
+    "revid": 1132750,
+    "line": "வாள்போல் பகைவரை யஞ்சற்க வஞ்சுக / கேள்போல் பகைவர் தொடர்பு."
+   },
+   "note": "orthographic error in the source; the Parimelazhagar edition has the corrected word"
+  },
+  {
+   "number": 976,
+   "type": "segmentation",
+   "raw": {
+    "Line1": "சிறியார் உணர்ச்சியுள் இல்லை பெரியாரைப்",
+    "Line2": "பேணிக் கொள் வேம் என்னும் நோக்கு."
+   },
+   "corrected": {
+    "Line1": "சிறியார் உணர்ச்சியுள் இல்லை பெரியாரைப்",
+    "Line2": "பேணிக்கொள் வேம்என்னும் நோக்கு."
+   },
+   "source": {
+    "name": "Tamil Wikisource, திருக்குறள், மூலம் (proofread transcription of the scanned edition)",
+    "url": "https://ta.wikisource.org/wiki/திருக்குறள்,_மூலம்/பெருமை",
+    "revid": 1531724,
+    "line": "சிறியார் உணர்ச்சியுள் இல்லை பெரியாரைப் / பேணிக்கொள் வேம்என்னும் நோக்கு."
+   },
+   "project_madurai": {
+    "url": "https://www.projectmadurai.org/pm_etexts/utf8/pmuni0001.html",
+    "line": "சிறியார் உணர்ச்சியுள் இல்லை பெரியாரைப் பேணிக் கொள் வேம் என்னும் நோக்கு.",
+    "agrees_with_correction": true
+   }
+  },
+  {
+   "number": 1117,
+   "type": "typo",
+   "raw": {
+    "Line1": "அறுவாய் நிறைந்த அவிர்மதிக்குப் க்குப் போல",
+    "Line2": "மறுவுண்டோ மாதர் முகத்து."
+   },
+   "corrected": {
+    "Line1": "அறுவாய் நிறைந்த அவிர்மதிக்குப் போல",
+    "Line2": "மறுவுண்டோ மாதர் முகத்து."
+   },
+   "source": {
+    "name": "Tamil Wikisource, திருக்குறள், மூலம் (proofread transcription of the scanned edition)",
+    "url": "https://ta.wikisource.org/wiki/திருக்குறள்,_மூலம்/நலம்_புனைந்து_உரைத்தல்",
+    "revid": 1531740,
+    "line": "அறுவாய் நிறைந்த அவிர்மதிக்குப் போல / மறுவுண்டோ மாதர் முகத்து."
+   },
+   "project_madurai": {
+    "url": "https://www.projectmadurai.org/pm_etexts/utf8/pmuni0001.html",
+    "line": "அறுவாய் நிறைந்த அவிர்மதிக்குப் போல மறுவுண்டோ  மாதர் முகத்து.",
+    "agrees_with_correction": true
+   }
+  },
+  {
+   "number": 1134,
+   "type": "variant",
+   "raw": {
+    "Line1": "காமக் கடும்புனல் உய்க்கும் நாணொடு",
+    "Line2": "நல்லாண்மை என்னும் புணை."
+   },
+   "corrected": {
+    "Line1": "காமக் கடும்புனல் உய்க்குமே நாணொடு",
+    "Line2": "நல்லாண்மை என்னும் புணை."
+   },
+   "source": {
+    "name": "Tamil Wikisource, திருக்குறள் பரிமேலழகர் உரை (பிழைநீக்கிய மெய்ப்பதிப்பு; metrical, seer-divided text)",
+    "url": "https://ta.wikisource.org/wiki/திருக்குறள்_பரிமேலழகர்_உரை/காமத்துப்பால்/114.நாணுத்துறவுரைத்தல்",
+    "revid": 483621,
+    "line": "காமக் கடும்புன லுய்க்குமே நாணொடு / நல்லாண்மை யென்னும் புணை."
+   },
+   "note": "textual variant: the Wikisource moolam text agrees with the raw source; the Parimelazhagar edition reading is adopted"
+  },
+  {
+   "number": 1202,
+   "type": "typo",
+   "raw": {
+    "Line1": "எனைத்தொனறு இனிதேகாண் காமம்தாம் வீழ்வார்",
+    "Line2": "நினைப்ப வருவதொன்று ஏல்."
+   },
+   "corrected": {
+    "Line1": "எனைத்தொன்று இனிதேகாண் காமம்தாம் வீழ்வார்",
+    "Line2": "நினைப்ப வருவதொன்று இல்."
+   },
+   "source": {
+    "name": "Tamil Wikisource, திருக்குறள், மூலம் (proofread transcription of the scanned edition)",
+    "url": "https://ta.wikisource.org/wiki/திருக்குறள்,_மூலம்/நினைந்தவர்_புலம்பல்",
+    "revid": 1531763,
+    "line": "எனைத்தொன்று இனிதேகாண் காமம்தாம் வீழ்வார் / நினைப்ப வருவதொன்று இல்."
+   },
+   "project_madurai": {
+    "url": "https://www.projectmadurai.org/pm_etexts/utf8/pmuni0001.html",
+    "line": "எனைத்தொனறு ஏனிதேகாண் காமம்தாம் வீழ்வார் நினைப்ப வருவதொன்று ஏல்.",
+    "agrees_with_correction": false
+   },
+   "note": "also ஏல் -> இல் (Wikisource reading; PM has ஏல்)"
+  },
+  {
+   "number": 1249,
+   "type": "variant",
+   "raw": {
+    "Line1": "உள்ளத்தார் காத லவரால் உள்ளிநீ",
+    "Line2": "யாருழைச் சேறியென் நெஞ்சு."
+   },
+   "corrected": {
+    "Line1": "உள்ளத்தார் காத லவராக உள்ளிநீ",
+    "Line2": "யாருழைச் சேறியென் நெஞ்சு."
+   },
+   "source": {
+    "name": "Tamil Wikisource, திருக்குறள் பரிமேலழகர் உரை (பிழைநீக்கிய மெய்ப்பதிப்பு; metrical, seer-divided text)",
+    "url": "https://ta.wikisource.org/wiki/திருக்குறள்_பரிமேலழகர்_உரை/காமத்துப்பால்/125.நெஞ்சொடுகிளத்தல்",
+    "revid": 483632,
+    "line": "உள்ளத்தார் காத லவராக வுள்ளிநீ / யாருழைச் சேறியென் னெஞ்சு."
+   },
+   "note": "textual variant: the Wikisource moolam text agrees with the raw source; the Parimelazhagar edition reading is adopted"
+  }
+ ]
+}

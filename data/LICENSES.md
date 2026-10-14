@@ -1,0 +1,3 @@
+- thirukkural.json, detail.json: tk120404/thirukkural (https://github.com/tk120404/thirukkural), Apache License 2.0.
+- sources/parimelazhagar_wikisource.json and the readings quoted in errata.json: Tamil Wikisource (https://ta.wikisource.org), CC BY-SA 4.0. Page titles and revision ids are recorded per entry.
+- yaappu_profiles.json: derived from thirukkural.json by scripts/export_profiles.py.

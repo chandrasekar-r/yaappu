@@ -35,3 +35,19 @@ for J in (False, True):
     print(f"\n## Phonotactics (unsandhied-compound junctions {'allowed' if J else 'strict'}): "
           f"{bad}/{total} words rejected = {100*bad/total:.2f}%\n")
     for key, v in rej.most_common(10): print(f"- {key} ({v}): {', '.join(ex[key][:4])}")
+
+# --- robustness / ablations -------------------------------------------------
+import random
+import yaappu.venba as V
+random.seed(0); acc = n = 0
+for k in d:
+    w = (k["Line1"] + " " + k["Line2"]).split()
+    if len(w) != 7:
+        continue
+    random.shuffle(w); n += 1; acc += check_kural(" ".join(w)).ok
+print(f"\n## Shuffle test (word order randomised, seed 0): {acc}/{n} = {100*acc/n:.1f}% still accepted")
+V.ELIDE = False
+noel = sum(check_kural(k["Line1"] + " " + k["Line2"]).ok for k in d)
+V.ELIDE = True
+print(f"\n## Ablation: kutriyalukaram elision off: {noel}/{len(d)} = {100*noel/len(d):.2f}% "
+      f"(full rule set: {ok}/{len(d)} = {100*ok/len(d):.2f}%)")

@@ -1,30 +1,48 @@
-# yaappu — classical Tamil meter & phonotactics (Step 1 + 2)
+# yaappu: Tamil kural venba prosody (யாப்பு)
 
-Rule-based checker for **Kural Venba** meter and **Mozhimarapu** phonotactics, designed to be
-compiled later into a constrained-decoding automaton for LLMs.
+**Live demo: https://yaappu.rclabs.in**
+
+yaappu is a rule-based Tamil meter toolkit. It includes:
+- a kural venba checker covering asai, seer, venthalai, the final seer, kutriyalukaram elision, resyllabification and licensed kutriyalikaram;
+- a Mozhimarapu phonotactic filter;
+- a word-level constrained decoder that makes a language model write couplets that always scan.
 
 ```python
-from yaappu import check_kural, check_word, asai_split
-check_kural("அகர முதல எழுத்தெல்லாம் ஆதி பகவன் முதற்றே உலகு.")
-# Result(ok=True, seers=['புளிமா','புளிமா','புளிமாங்காய்','தேமா','புளிமா','புளிமா','பிறப்பு'])
-check_word("பார்த்தான்")  # (True, 'ok')
+from yaappu import check_kural
+from yaappu.reseg import check_kural_licensed
+check_kural("அகர முதல எழுத்தெல்லாம் ஆதி\nபகவன் முதற்றே உலகு.").seers
+# ['புளிமா', 'புளிமா', 'புளிமாங்காய்', 'தேமா', 'புளிமா', 'புளிமா', 'பிறப்பு']
 ```
 
-## Rules implemented
-- **Graphemes** (`graphemes.py`): uyir, mei, uyirmei, aytham.
-- **Asai** (`asai.py`): ner = one syllable (+closing consonants); nirai = short syllable + next syllable (+consonants).
-- **Seer**: 2-asai iyarseer (மா/விளம்), 3-asai venseer (காய்); கனி seers rejected.
-- **Venthalai (XOR)**: after a 2-asai seer the next seer starts with the opposite of its last asai; after a காய் seer the next starts with ner.
-- **Final seer**: நாள் / மலர் / காசு / பிறப்பு (1 asai, or 1 asai + final உ syllable).
-- **Alabedai**: only a bare vowel letter written after the *matching* long vowel (ஆஅ, ஈஇ, ஊஉ, ஏஎ, ஐஇ, ஓஒ, ஔஉ); scanned both counted and uncounted.
-- **Aytham** may be counted as a short unit (both readings tried).
-- **Kutriyalukaram**: word-final short உ on a hard stop (not in a short-1-syllable word like அது) loses its உ before a vowel, between words and inside tokens written without sandhi.
-- **Puṇarchi resyllabification**: a final consonant can join the next word's initial vowel (துன்பம் அஃது → துன்பமஃ | து).
-- **Seer re-segmentation**: an 8-token couplet may join one adjacent pair into one seer.
-- **Mozhimarapu** (`phonotactics.py`): legal initials (vowels, க ச த ந ப ம வ ய ஞ), legal final consonants (ஞ ண ந ம ன ய ர ல வ ழ ள), a consonant-cluster table (vallinam geminate only; ட்/ற் + க ச ப; nasal + homorganic stop; ய்/ர்/ழ் + stop/nasal; no ர்ர், ழ்ழ்), and 3-consonant clusters only as ய்/ர்/ழ் + geminate or nasal+stop (பார்த்தான், வாழ்க்கை, காய்ந்த). `check_text` re-joins seer-split fragments and allows word-final stops created by boundary gemination. `junctions=True` also accepts compounds written without sandhi (வான்நின்று).
+## Results (all 1,330 Thirukkural couplets)
 
-## Data
-`data/thirukkural.json` from [tk120404/thirukkural](https://github.com/tk120404/thirukkural) (word-separated edition; all 1,330 are Kural Venba).
+| checker | raw text | errata = typo | errata = all | shuffled-word false accepts |
+|---|---|---|---|---|
+| base (`check_kural`) | 1284 (96.54%) | 1306 (98.20%) | 1318 (99.10%) | 14/1305 |
+| licensed (`check_kural_licensed`, L1 kutriyalikaram) | 1294 (97.29%) | 1316 (98.95%) | **1328 (99.85%)** | 14/1305 |
 
-## Benchmark
-`python3 scripts/bench.py` → see [BENCHMARK.md](BENCHMARK.md).
+- **Errata:** `data/errata.json`, applied with `yaappu.errata.load_kurals("typo" | "all")`. The raw data is never modified.
+- **Sources:** every correction cites a Tamil Wikisource edition: *திருக்குறள், மூலம்* or *திருக்குறள் பரிமேலழகர் உரை*. Each entry records the page URL, the revision id and the exact line. `all` adds variant readings and the edition's seer division (vakaiyuli).
+- **Two kurals still fail:** 778 and 832 fail in both editions. They are left failing rather than forced through with an exception; see [BENCHMARK.md](BENCHMARK.md).
+- **Constrained generation (gemma-2-2b-it, CPU):** 60/60 couplets pass the meter checker, against 0/60 for the unconstrained baseline. The constraint guarantees meter, not meaning. See [EVAL.md](EVAL.md).
+- **TypeScript port** (`demo/src/checker.ts`, `licensed.ts`): matches the Python output exactly on 7,941 test cases.
+
+## Layout
+- `yaappu/`: the package. `graphemes`, `asai`, `venba` (checker), `reseg` (licensed re-segmentation), `errata`, `phonotactics`, `word_decode` (constrained decoder; needs torch and transformers).
+- `scripts/`:
+  - `bench.py`, `bench_reseg.py`: checker benchmarks.
+  - `probe_profiler.py`, `export_profiles.py`: word profiles.
+  - `eval_words.py`, `eval_rerank.py`, `eval_ppl_words.py`, `eval_words_metrics.py`: generation eval.
+- `demo/`: the Cloudflare Worker behind yaappu.rclabs.in, plus parity scripts and screenshots.
+- `tests/`: run `python -m pytest`.
+
+## Install
+```
+pip install yaappu            # core checker, no dependencies
+pip install "yaappu[decode]"  # constrained decoder (torch, transformers)
+```
+
+## Data and licences
+- **Code:** MIT (see LICENSE).
+- **`data/thirukkural.json`, `data/detail.json`:** from [tk120404/thirukkural](https://github.com/tk120404/thirukkural), Apache-2.0.
+- **`data/sources/parimelazhagar_wikisource.json` and the cited readings in `data/errata.json`:** from Tamil Wikisource, CC BY-SA 4.0.

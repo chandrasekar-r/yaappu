@@ -95,11 +95,14 @@ def final_pattern(word: str, pat):
     return None
 
 
+ELIDE = True  # set False for the elision ablation in scripts/bench.py
+
+
 def check_kural(text: str) -> Result:
     words = [w for w in text.replace("\n", " ").split() if parse(w)]
     if len(words) == 8:
         # seer boundaries need not match word boundaries: try joining one adjacent pair
-        tries = [words[:k] + [_elide(words[k:k + 2])[0] + words[k + 1]] + words[k + 2:] for k in range(7)]
+        tries = [words[:k] + [(_elide(words[k:k + 2])[0] if ELIDE else words[k]) + words[k + 1]] + words[k + 2:] for k in range(7)]
         results = [check_kural(" ".join(t)) for t in tries]
         good = [r for r in results if r.ok]
         if good:
@@ -107,7 +110,8 @@ def check_kural(text: str) -> Result:
         return Result(False, "word_count", detail="8 words, no join scans")
     if len(words) != 7:
         return Result(False, "word_count", detail=str(len(words)))
-    words = _elide(words)
+    if ELIDE:
+        words = _elide(words)
     try:
         [list(_readings(w)) for w in words]
     except ValueError as e:
