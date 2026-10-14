@@ -223,11 +223,17 @@ function checkKural(text) {
 }
 export {
   AYTHAM,
+  FINAL_NAMES,
   NER,
   NIRAI,
+  SEER_NAMES,
   VIRAMA,
   asaiSplit,
   checkKural,
+  elide,
   endsKutriyalukaram,
-  parse
+  finalPattern,
+  nextStartRequired,
+  parse,
+  readings
 };

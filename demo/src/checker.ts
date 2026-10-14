@@ -59,18 +59,18 @@ export function endsKutriyalukaram(word: string): boolean {
   return !(gs.length === 2 && isShort(gs[0]));
 }
 
-const SEER_NAMES: Record<string, string> = {
+export const SEER_NAMES: Record<string, string> = {
   "ner,ner": "தேமா", "nirai,ner": "புளிமா", "nirai,nirai": "கருவிளம்", "ner,nirai": "கூவிளம்",
   "ner,ner,ner": "தேமாங்காய்", "nirai,ner,ner": "புளிமாங்காய்", "nirai,nirai,ner": "கருவிளங்காய்", "ner,nirai,ner": "கூவிளங்காய்",
   "ner,ner,nirai": "தேமாங்கனி", "nirai,ner,nirai": "புளிமாங்கனி", "nirai,nirai,nirai": "கருவிளங்கனி", "ner,nirai,nirai": "கூவிளங்கனி",
 };
-const FINAL_NAMES: Record<string, string> = { "ner": "நாள்", "nirai": "மலர்", "ner,bu": "காசு", "nirai,bu": "பிறப்பு" };
+export const FINAL_NAMES: Record<string, string> = { "ner": "நாள்", "nirai": "மலர்", "ner,bu": "காசு", "nirai,bu": "பிறப்பு" };
 
 export interface Result { ok: boolean; error: string | null; seers: string[]; detail: string; asai?: string[][]; words?: string[] }
 const R = (ok: boolean, error: string | null = null, seers: string[] = [], detail = ""): Result => ({ ok, error, seers, detail });
 
 const INNER = /([கசடதபற])\u0BC1(?=[அஆஇஈஉஊஎஏஐஒஓஔ])/g;
-function elide(words: string[]): string[] {
+export function elide(words: string[]): string[] {
   const inner = (w: string) => w.replace(INNER, (m: string, c: string, off: number) =>
     c + (!endsKutriyalukaram(w.slice(0, off + m.length)) ? "\u0BC1" : VIRAMA));
   const out = words.map(inner);
@@ -101,7 +101,7 @@ function variants(words: string[]): string[][] {
   return out;
 }
 
-function readings(word: string): string[][] {
+export function readings(word: string): string[][] {
   const gs = parse(word);
   const hasAlb = gs.some((g, k) => k > 0 && isAlabedai(gs[k - 1], g));
   const alb = hasAlb ? [true, false] : [true];
@@ -111,9 +111,9 @@ function readings(word: string): string[][] {
   return res;
 }
 
-const nextStartRequired = (p: string[]) => p.length === 2 ? (p[1] === NER ? NIRAI : NER) : NER;
+export const nextStartRequired = (p: string[]) => p.length === 2 ? (p[1] === NER ? NIRAI : NER) : NER;
 
-function finalPattern(word: string, pat: string[]): string[] | null {
+export function finalPattern(word: string, pat: string[]): string[] | null {
   if (pat.length === 1) return pat.slice();
   if (pat.length === 2 && pat[1] === NER) { const g = parse(word); const l = g[g.length - 1]; if (l.vowel === "u" && l.cons) return [pat[0], "bu"]; }
   return null;
